@@ -27,7 +27,6 @@ object Requests extends ServicesConfiguration {
   val baseUrl: String = baseUrlFor("crs-fatca-registration-frontend")
   val baseUrlAuth: String = baseUrlFor("auth-frontend")
   val route : String = "/register-for-crs-and-fatca"
-//  val crsFatcaRegistrationRoute: String   = s"$baseUrl/register-for-crs-and-fatca"
 
   def inputSelectorByName(name: String): Expression[String] = s"input[name='$name']"
 
@@ -93,20 +92,6 @@ object Requests extends ServicesConfiguration {
       .formParam("value", "false")
       .check(status.is(303))
       .check(header("Location").is(route + "/register/without-id/business-name").saveAs("BusinessWithoutId"))
-
-//  val getUTRPage: HttpRequestBuilder =
-//    http("Get Have UTR Page")
-//      .get(baseUrl + "${HaveUTR}")
-//      .check(status.is(200))
-//      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
-//
-//  val postUTRPage: HttpRequestBuilder =
-//    http("post Have UTR Page-No")
-//      .post(baseUrl + "${HaveUTR}")
-//      .formParam("csrfToken", "${csrfToken}")
-//      .formParam("value", "1234567890")
-//      .check(status.is(303))
-//      .check(header("Location").is(route + "/register/business-name").saveAs("BusinessWithID"))
 
   val getBusinessNamePage: HttpRequestBuilder =
     http("Get Business Name Page without Id")
@@ -244,7 +229,6 @@ object Requests extends ServicesConfiguration {
       .check(status.is(303))
       .check(header("Location").is(route + "/register/second-contact-name").saveAs("SecondContactName"))
 
-
   val getSecondContactNamePage: HttpRequestBuilder =
     http("Get Second Contact Name")
       .get(baseUrl + "${SecondContactName}")
@@ -361,12 +345,5 @@ object Requests extends ServicesConfiguration {
       .formParam("value", "true")
       .check(status.is(303))
       .check(header("Location").is(route + "/register/your-contact-details").saveAs("YourContactDetails"))
-
-
-
-
-
-
-
 
 }

@@ -79,5 +79,21 @@ class Simulation extends PerformanceTestRunner {
     getYourBusinessWithIdPage,
     postYourBusinessWithIdPage,
   )
+
+  setup("SoletraderWithoutId", "Soletrader Without ID Journey").withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeSole,
+    getRegisteredAddressInUkPage,
+    postRegisteredAddressInUkPage("false"),
+    getUTRPage,
+    postHaveUTRNoSTPage,
+    getNINOPage,
+    postHaveNINONoSTPage,
+    getWhatIsYourNamePage,
+    postWhatIsYourNamePage,
+    getWhatIsYourDateOfBirthPage,
+    postWhatIsYourDateOfBirthPage
+
+  )
   runSimulation()
 }

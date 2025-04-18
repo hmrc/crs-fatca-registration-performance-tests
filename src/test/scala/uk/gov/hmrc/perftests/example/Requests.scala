@@ -313,7 +313,7 @@ object Requests extends ServicesConfiguration {
 
 
     val postUTRPage: HttpRequestBuilder =
-      http("post Have UTR Page-No")
+      http("post Have UTR Page-Yes")
         .post(baseUrl + "${HaveUTR}")
         .formParam("csrfToken", "${csrfToken}")
         .formParam("value", "1234567890")
@@ -407,7 +407,122 @@ object Requests extends ServicesConfiguration {
       .formParam("value.month", "3")
       .formParam("value.year", "1989")
       .check(status.is(303))
-      .check(header("Location").is(route + "/register/without-id/where-do-you-live").saveAs("liveInUK"))
+      .check(header("Location").is(route + "/register/without-id/where-do-you-live").saveAs("WhereDoYouLive"))
+
+  val getWhereDoYouLivePage: HttpRequestBuilder =
+    http("Get Where Do You Live Page")
+      .get(baseUrl + "${WhereDoYouLive}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postWhereDoYouLivePage: HttpRequestBuilder =
+    http("Post Where Do You Live Page")
+      .post(baseUrl + "${WhereDoYouLive}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "false")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/without-id/address-non-uk").saveAs("AddressNonUK"))
+
+  val getUserAddressNonUKPage: HttpRequestBuilder =
+    http("Get NonUK Address Page")
+      .get(baseUrl + "${AddressNonUK}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postUserAddressNonUKPage: HttpRequestBuilder =
+    http("Post User Non UK Address")
+      .post(baseUrl + "${AddressNonUK}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("addressLine1", "1 Test Street")
+      .formParam("addressLine2", "Test Area")
+      .formParam("addressLine3", "TestCity")
+      .formParam("addressLine4", "TestRegion")
+      .formParam("postCode", "AB12 6XX")
+      .formParam("country", "PL")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
+
+  val getIndividualEmailAddressPage: HttpRequestBuilder =
+    http("Get Individual Email Address Page")
+      .get(baseUrl + "${IndividualEmail}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postIndividualEmailAddressPage: HttpRequestBuilder =
+    http("Post Individual Email Address Page")
+      .post(baseUrl + "${IndividualEmail}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "test@verify.com")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-have-phone").saveAs("IndividualHavePhone"))
+
+  val getIndividualHavePhonePage: HttpRequestBuilder =
+    http("Get Individual have-phone")
+      .get(baseUrl + "${IndividualHavePhone}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postIndividualHavePhonePage: HttpRequestBuilder =
+    http("post have-phone")
+      .post(baseUrl + "${IndividualHavePhone}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "true")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-phone").saveAs("IndividualPhone"))
+
+  val getIndividualPhonePage: HttpRequestBuilder =
+    http("Get phone")
+      .get(baseUrl + "${IndividualPhone}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postIndividualPhonePage: HttpRequestBuilder =
+    http("post phone")
+      .post(baseUrl + "${IndividualPhone}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "1234567890")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/check-answers").saveAs("CheckAnswers"))
+
+  val postIndividualUTRPage: HttpRequestBuilder =
+    http("post Have UTR Page-No")
+      .post(baseUrl + "${HaveUTR}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "1234567890")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/your-name").saveAs("userName"))
+
+  val postBusinessRegistrationTypeIndividual: HttpRequestBuilder =
+    http("Post Business Registration Type")
+      .post(baseUrl + route + "/register/registration-type")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "individual")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/have-ni-number").saveAs("HaveNI"))
+
+  val postNINOYesPage: HttpRequestBuilder =
+    http("Post NINO Page - Yes")
+      .post(baseUrl + "${HaveNI}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "true")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/ni-number").saveAs("NINumber"))
+
+  val getNINumberPage: HttpRequestBuilder =
+    http("Get Ni Number")
+      .get(baseUrl + "${NINumber}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postNINumberPage: HttpRequestBuilder =
+    http("Post NiNumber Page")
+      .post(baseUrl + "${NINumber}")
+      .formParam("csrfToken", "${csrfToken}")
+      .formParam("value", "AA 111111A")
+      .check(status.is(303))
+      .check(header("Location"). is(route + "/register/name"). saveAs("userName"))
+
+
 
 
 

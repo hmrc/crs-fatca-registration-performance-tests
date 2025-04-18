@@ -92,8 +92,45 @@ class Simulation extends PerformanceTestRunner {
     getWhatIsYourNamePage,
     postWhatIsYourNamePage,
     getWhatIsYourDateOfBirthPage,
-    postWhatIsYourDateOfBirthPage
-
+    postWhatIsYourDateOfBirthPage,
+    getWhereDoYouLivePage,
+    postWhereDoYouLivePage,
+    getUserAddressNonUKPage,
+    postUserAddressNonUKPage
   )
+
+  setup("IndividualContactDetails", "Individual Contact Details Journey") withRequests (
+    getIndividualEmailAddressPage,
+    postIndividualEmailAddressPage,
+    getIndividualHavePhonePage,
+    postIndividualHavePhonePage,
+    getIndividualPhonePage,
+    postIndividualPhonePage
+  )
+
+  setup("SoletraderWithId", "Sole trader With ID Journey"). withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeSole,
+    getRegisteredAddressInUkPage,
+    postRegisteredAddressInUkPage("true"),
+    getUTRPage,
+    postIndividualUTRPage
+  )
+
+  setup("IndividualWithoutId", "Individual Without ID Journey").withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual
+  )
+
+  setup("IndividualWithId", "Individual With ID Journey"). withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOYesPage,
+    getNINumberPage,
+    postNINumberPage
+  )
+
+
   runSimulation()
 }

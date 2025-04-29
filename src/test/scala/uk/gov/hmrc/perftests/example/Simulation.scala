@@ -88,7 +88,7 @@ class Simulation extends PerformanceTestRunner {
     getUTRPage,
     postHaveUTRNoSTPage,
     getNINOPage,
-    postHaveNINONoSTPage,
+    postNINOPage("false"),
     getWhatIsYourNamePage,
     postWhatIsYourNamePage,
     getWhatIsYourDateOfBirthPage,
@@ -114,7 +114,10 @@ class Simulation extends PerformanceTestRunner {
     getRegisteredAddressInUkPage,
     postRegisteredAddressInUkPage("true"),
     getUTRPage,
-    postIndividualUTRPage
+    postIndividualUTRPage,
+
+
+
   )
 
   setup("IndividualWithoutId", "Individual Without ID Journey").withActions(
@@ -126,11 +129,18 @@ class Simulation extends PerformanceTestRunner {
     getBusinessRegistrationTypePage,
     postBusinessRegistrationTypeIndividual,
     getNINOPage,
-    postNINOYesPage,
-    getNINumberPage,
-    postNINumberPage
+    postNINOPage("true"),
+    getWhatIsYourNiPage,
+    postWhatIsYourNiPage,
+    getIndividualNamePage,
+    postIndividualNamePage,
+    getIndividualDoBPage,
+    postIndividualDoBPage,
+    getIdentityConfirmedPage,
+    postIdentityConfirmedPage
+
+
+
   )
-
-
   runSimulation()
 }

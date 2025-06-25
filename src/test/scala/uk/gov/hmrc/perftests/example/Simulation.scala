@@ -79,5 +79,76 @@ class Simulation extends PerformanceTestRunner {
     getYourBusinessWithIdPage,
     postYourBusinessWithIdPage,
   )
+
+  setup("SoletraderWithoutId", "Soletrader Without ID Journey").withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeSole,
+    getRegisteredAddressInUkPage,
+    postRegisteredAddressInUkPage("false"),
+    getUTRPage,
+    postHaveUTRNoSTPage,
+    getNINOPage,
+    postNINOPage("false"),
+    getWhatIsYourNamePage,
+    postWhatIsYourNamePage,
+    getWhatIsYourDateOfBirthPage,
+    postWhatIsYourDateOfBirthPage,
+    getWhereDoYouLivePage,
+    postWhereDoYouLivePage,
+    getUserAddressNonUKPage,
+    postUserAddressNonUKPage
+  )
+
+  setup("IndividualContactDetails", "Individual Contact Details Journey") withRequests (
+    getIndividualEmailAddressPage,
+    postIndividualEmailAddressPage,
+    getIndividualHavePhonePage,
+    postIndividualHavePhonePage,
+    getIndividualPhonePage,
+    postIndividualPhonePage
+  )
+
+  setup("SoletraderWithId", "Sole trader With ID Journey"). withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeSole,
+    getRegisteredAddressInUkPage,
+    postRegisteredAddressInUkPage("true"),
+    getUTRPage,
+    postIndividualUTRPage,
+
+  )
+
+  setup("IndividualWithoutId", "Individual Without ID Journey").withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOPage("false"),
+    getWhatIsYourNamePage,
+    postWhatIsYourNamePage,
+    getWhatIsYourDateOfBirthPage,
+    postWhatIsYourDateOfBirthPage,
+    getWhereDoYouLivePage,
+    postWhereDoYouLivePage,
+    getUserAddressNonUKPage,
+    postUserAddressNonUKPage
+  )
+
+  setup("IndividualWithId", "Individual With ID Journey"). withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOPage("true"),
+    getWhatIsYourNiPage,
+    postWhatIsYourNiPage,
+    getIndividualNamePage,
+    postIndividualNamePage,
+    getIndividualDoBPage,
+    postIndividualDoBPage,
+    getIdentityConfirmedPage,
+
+
+
+
+  )
   runSimulation()
 }

@@ -428,7 +428,7 @@ object Requests extends ServicesConfiguration {
     http("Get Identity Confirmed Page")
       .get(baseUrl + "${IdentityConfirmed}")
       .check(status.is(200))
-      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
 
   val postIdentityConfirmedPage : HttpRequestBuilder =
     http("Post Identity Confirmed")

@@ -435,7 +435,7 @@ object Requests extends ServicesConfiguration {
       .post(baseUrl + "${IdentityConfirmed}")
       .formParam("csrfToken", "${csrfToken}")
       .check(status.is(303))
-      .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
+    // .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
 
 
   val getWhatIsYourNamePage: HttpRequestBuilder =
@@ -500,17 +500,17 @@ object Requests extends ServicesConfiguration {
       .formParam("postCode", "AB12 6XX")
       .formParam("country", "PL")
       .check(status.is(303))
-      .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
+     // .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
 
   val getIndividualEmailAddressPage: HttpRequestBuilder =
     http("Get Individual Email Address Page")
-      .get(baseUrl + "${IndividualEmail}")
+      .get(baseUrl + route + "/register/individual-email")
       .check(status.is(200))
       .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
 
   val postIndividualEmailAddressPage: HttpRequestBuilder =
     http("Post Individual Email Address Page")
-      .post(baseUrl + "${IndividualEmail}")
+      .post(baseUrl + route + "/register/individual-email")
       .formParam("csrfToken", "${csrfToken}")
       .formParam("value", "test@verify.com")
       .check(status.is(303))

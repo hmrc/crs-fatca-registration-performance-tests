@@ -105,7 +105,10 @@ class Simulation extends PerformanceTestRunner {
     getIndividualHavePhonePage,
     postIndividualHavePhonePage,
     getIndividualPhonePage,
-    postIndividualPhonePage
+    postIndividualPhonePage,
+    getIndividualCheckAnswersPage,
+    postCheckYourAnswersPage,
+    getConfirmationRegistrationPage
   )
 
   setup("SoletraderWithId", "Sole trader With ID Journey"). withActions(
@@ -131,6 +134,25 @@ class Simulation extends PerformanceTestRunner {
     postWhereDoYouLivePage,
     getUserAddressNonUKPage,
     postUserAddressNonUKPage
+
+  )
+
+  setup("IndividualWithoutIdUKAddress", "Individual Without ID with UK Address").withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOPage("false"),
+    getWhatIsYourNamePage,
+    postWhatIsYourNamePage,
+    getWhatIsYourDateOfBirthPage,
+    postWhatIsYourDateOfBirthPage,
+    getWhereDoYouLivePage,
+    postWhereDoYouLiveYesPage,
+    getUserPostcodeUKPage,
+    postUserPostcodeUKPage,
+    getUserAddressUKPage,
+    postUserAddressUKPage,
+
   )
 
   setup("IndividualWithId", "Individual With ID Journey"). withActions(

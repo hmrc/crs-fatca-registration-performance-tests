@@ -292,6 +292,13 @@ object Requests extends ServicesConfiguration {
       .check(status.is(200))
       .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
 
+  val getIndividualCheckAnswersPage: HttpRequestBuilder = {
+    http("Get Individual Check Answers")
+    .get(baseUrl + "#{CheckAnswers}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"),"value").saveAs("csrfToken"))
+  }
+
   val postCheckYourAnswersPage: HttpRequestBuilder =
     http("post Check Your Answers")
       .post(baseUrl + "#{CheckAnswers}")
@@ -482,6 +489,41 @@ object Requests extends ServicesConfiguration {
       .formParam("value", "false")
       .check(status.is(303))
       .check(header("Location").is(route + "/register/without-id/address-non-uk").saveAs("AddressNonUK"))
+
+  val postWhereDoYouLiveYesPage: HttpRequestBuilder =
+    http("Post Where Do You Live Page")
+      .post(baseUrl + "#{WhereDoYouLive}")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("value", "true")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/without-id/uk-postcode").saveAs("PostcodeUK"))
+
+  val getUserPostcodeUKPage: HttpRequestBuilder =
+    http("Get UK postcode page")
+      .get(baseUrl + "#{PostcodeUK}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postUserPostcodeUKPage: HttpRequestBuilder =
+    http("Post UK Postcode")
+      .post(baseUrl + "#{PostcodeUK}")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("postCode", "ZZ1Z 7AB")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/without-id/is-this-your-address").saveAs("YourUKAddressPage"))
+
+  val getUserAddressUKPage: HttpRequestBuilder =
+    http("Get Your Address Page")
+      .get(baseUrl + "#{YourUKAddressPage}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postUserAddressUKPage: HttpRequestBuilder =
+    http("Post Your UK Address Page")
+      .post(baseUrl + "#{YourUKAddressPage}")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("value", "true")
+      .check(status.is(303))
 
   val getUserAddressNonUKPage: HttpRequestBuilder =
     http("Get NonUK Address Page")

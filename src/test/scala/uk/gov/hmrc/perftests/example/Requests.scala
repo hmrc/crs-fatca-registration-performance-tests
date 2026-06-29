@@ -524,6 +524,7 @@ object Requests extends ServicesConfiguration {
       .formParam("csrfToken", "#{csrfToken}")
       .formParam("value", "true")
       .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
 
   val getUserAddressNonUKPage: HttpRequestBuilder =
     http("Get NonUK Address Page")
@@ -542,11 +543,11 @@ object Requests extends ServicesConfiguration {
       .formParam("postCode", "AB12 6XX")
       .formParam("country", "PL")
       .check(status.is(303))
-     // .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
+      .check(header("Location").is(route + "/register/individual-email").saveAs("IndividualEmail"))
 
   val getIndividualEmailAddressPage: HttpRequestBuilder =
     http("Get Individual Email Address Page")
-      .get(baseUrl + route + "/register/individual-email")
+      .get(baseUrl + "#{IndividualEmail}")
       .check(status.is(200))
       .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
 

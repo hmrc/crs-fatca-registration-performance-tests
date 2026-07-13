@@ -436,6 +436,21 @@ object Requests extends ServicesConfiguration {
       .get(baseUrl + "#{IdentityConfirmed}")
       .check(status.is(200))
 
+  val getIndividualWithIdEmailPage: HttpRequestBuilder =
+    http("Get Individual With ID Email Address Page")
+      .get(baseUrl + route + "/register/individual-email")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postIndividualWithIdEmailPage: HttpRequestBuilder =
+    http("Post Individual With ID Email Address Page")
+      .post(baseUrl + route + "/register/individual-email")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("value", "test@verify.com")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-have-phone").saveAs("IndividualHavePhone"))
+
+
 
   val postIdentityConfirmedPage : HttpRequestBuilder =
     http("Post Identity Confirmed")
@@ -553,7 +568,7 @@ object Requests extends ServicesConfiguration {
 
   val postIndividualEmailAddressPage: HttpRequestBuilder =
     http("Post Individual Email Address Page")
-      .post(baseUrl + route + "/register/individual-email")
+      .post(baseUrl + "#{IndividualEmail}")
       .formParam("csrfToken", "#{csrfToken}")
       .formParam("value", "test@verify.com")
       .check(status.is(303))
@@ -587,13 +602,56 @@ object Requests extends ServicesConfiguration {
       .check(status.is(303))
       .check(header("Location").is(route + "/register/check-answers").saveAs("CheckAnswers"))
 
-  val postIndividualUTRPage: HttpRequestBuilder =
+  val postSoleTraderUTRPage: HttpRequestBuilder =
     http("post Have UTR Page-No")
       .post(baseUrl + "#{HaveUTR}")
       .formParam("csrfToken", "#{csrfToken}")
       .formParam("value", "1234567890")
       .check(status.is(303))
       .check(header("Location").is(route + "/register/your-name").saveAs("userName"))
+
+  val getSoleWhatIsYourNamePage: HttpRequestBuilder =
+    http("Get What is your Name page")
+      .get(baseUrl + "#{userName}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postSoleWhatIsYourNamePage: HttpRequestBuilder =
+    http("Post Your Name")
+      .post(baseUrl + "#{userName}")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("firstName", "FirstName")
+      .formParam("lastName", "LastName")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/is-this-your-business").saveAs("soleBusiness"))
+
+  val getIsThisYourBusinessPage: HttpRequestBuilder =
+    http("Get Is This Your Business Page")
+      .get(baseUrl + "#{soleBusiness}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postIsThisYourBusinessPage: HttpRequestBuilder =
+    http("post Is This Your Business Page")
+      .post(baseUrl + "#{soleBusiness}")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("value", "true")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-email").saveAs("soleEmail"))
+
+  val getSoleEmailAddressPage: HttpRequestBuilder =
+    http("Get SoleTrader Email Address Page")
+      .get(baseUrl + "#{soleEmail}")
+      .check(status.is(200))
+      .check(css(inputSelectorByName("csrfToken"), "value").saveAs("csrfToken"))
+
+  val postSoloEmailAddressPage: HttpRequestBuilder =
+    http("Post Individual Email Address Page")
+      .post(baseUrl + "#{soleEmail}")
+      .formParam("csrfToken", "#{csrfToken}")
+      .formParam("value", "test@verify.com")
+      .check(status.is(303))
+      .check(header("Location").is(route + "/register/individual-have-phone").saveAs("IndividualHavePhone"))
 
   val postBusinessRegistrationTypeIndividual: HttpRequestBuilder =
     http("Post Business Registration Type")

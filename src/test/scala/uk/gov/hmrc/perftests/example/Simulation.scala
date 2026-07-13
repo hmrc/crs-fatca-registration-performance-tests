@@ -96,12 +96,26 @@ class Simulation extends PerformanceTestRunner {
     getWhereDoYouLivePage,
     postWhereDoYouLivePage,
     getUserAddressNonUKPage,
-    postUserAddressNonUKPage
-  )
-
-  setup("IndividualContactDetails", "Individual Contact Details Journey") withRequests (
+    postUserAddressNonUKPage,
     getIndividualEmailAddressPage,
     postIndividualEmailAddressPage,
+  )
+
+  setup("SoletraderWithId", "Sole trader With ID Journey"). withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeSole,
+    getRegisteredAddressInUkPage,
+    postRegisteredAddressInUkPage("true"),
+    getUTRPage,
+    postSoleTraderUTRPage,
+    getSoleWhatIsYourNamePage,
+    postSoleWhatIsYourNamePage,
+    getIsThisYourBusinessPage,
+    postIsThisYourBusinessPage,
+    getSoleEmailAddressPage,
+    postSoloEmailAddressPage
+  )
+  setup("SoleTIndividualContactDetails", "SoleT Individual Contact Details Journey") withRequests (
     getIndividualHavePhonePage,
     postIndividualHavePhonePage,
     getIndividualPhonePage,
@@ -111,14 +125,71 @@ class Simulation extends PerformanceTestRunner {
     getConfirmationRegistrationPage
   )
 
-  setup("SoletraderWithId", "Sole trader With ID Journey"). withActions(
+  setup("IndividualWithoutId", "Individual Without ID Journey").withActions(
     getBusinessRegistrationTypePage,
-    postBusinessRegistrationTypeSole,
-    getRegisteredAddressInUkPage,
-    postRegisteredAddressInUkPage("true"),
-    getUTRPage,
-    postIndividualUTRPage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOPage("false"),
+    getWhatIsYourNamePage,
+    postWhatIsYourNamePage,
+    getWhatIsYourDateOfBirthPage,
+    postWhatIsYourDateOfBirthPage,
+    getWhereDoYouLivePage,
+    postWhereDoYouLivePage,
+    getUserAddressNonUKPage,
+    postUserAddressNonUKPage,
+    getIndividualEmailAddressPage,
+    postIndividualEmailAddressPage
+  )
 
+  setup("IndividualWithId", "Individual With ID Journey"). withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOPage("true"),
+    getWhatIsYourNiPage,
+    postWhatIsYourNiPage,
+    getIndividualNamePage,
+    postIndividualNamePage,
+    getIndividualDoBPage,
+    postIndividualDoBPage,
+    getIdentityConfirmedPage,
+    getIndividualWithIdEmailPage,
+    postIndividualWithIdEmailPage
+  )
+
+  setup("IndividualWithoutIdUKAddress", "Individual Without ID with UK Address").withActions(
+    getBusinessRegistrationTypePage,
+    postBusinessRegistrationTypeIndividual,
+    getNINOPage,
+    postNINOPage("false"),
+    getWhatIsYourNamePage,
+    postWhatIsYourNamePage,
+    getWhatIsYourDateOfBirthPage,
+    postWhatIsYourDateOfBirthPage,
+    getWhereDoYouLivePage,
+    postWhereDoYouLiveYesPage,
+    getUserPostcodeUKPage,
+    postUserPostcodeUKPage,
+    getUserAddressUKPage,
+    postUserAddressUKPage,
+    getIndividualEmailAddressPage,
+    postIndividualEmailAddressPage
+
+  )
+
+
+
+  /*setup("IndividualContactDetails", "Individual Contact Details Journey") withRequests (
+    getIndividualEmailAddressPage,
+    postIndividualEmailAddressPage,
+    getIndividualHavePhonePage,
+    postIndividualHavePhonePage,
+    getIndividualPhonePage,
+    postIndividualPhonePage,
+    getIndividualCheckAnswersPage,
+    postCheckYourAnswersPage,
+    getConfirmationRegistrationPage
   )
 
   setup("IndividualWithoutId", "Individual Without ID Journey").withActions(
@@ -167,10 +238,6 @@ class Simulation extends PerformanceTestRunner {
     getIndividualDoBPage,
     postIndividualDoBPage,
     getIdentityConfirmedPage,
-
-
-
-
-  )
+  )*/
   runSimulation()
 }

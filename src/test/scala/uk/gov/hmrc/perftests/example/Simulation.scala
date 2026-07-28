@@ -170,74 +170,10 @@ class Simulation extends PerformanceTestRunner {
     getWhereDoYouLivePage,
     postWhereDoYouLiveYesPage,
     getUserPostcodeUKPage,
-    postUserPostcodeUKPage,
-    getUserAddressUKPage,
-    postUserAddressUKPage,
-    getIndividualEmailAddressPage,
-    postIndividualEmailAddressPage
-
+    getAddressUKPage,
+    postAddressUKPage,
+    getIndividualWithIdEmailPage,
+    postIndividualWithIdEmailPage
   )
-
-
-
-  /*setup("IndividualContactDetails", "Individual Contact Details Journey") withRequests (
-    getIndividualEmailAddressPage,
-    postIndividualEmailAddressPage,
-    getIndividualHavePhonePage,
-    postIndividualHavePhonePage,
-    getIndividualPhonePage,
-    postIndividualPhonePage,
-    getIndividualCheckAnswersPage,
-    postCheckYourAnswersPage,
-    getConfirmationRegistrationPage
-  )
-
-  setup("IndividualWithoutId", "Individual Without ID Journey").withActions(
-    getBusinessRegistrationTypePage,
-    postBusinessRegistrationTypeIndividual,
-    getNINOPage,
-    postNINOPage("false"),
-    getWhatIsYourNamePage,
-    postWhatIsYourNamePage,
-    getWhatIsYourDateOfBirthPage,
-    postWhatIsYourDateOfBirthPage,
-    getWhereDoYouLivePage,
-    postWhereDoYouLivePage,
-    getUserAddressNonUKPage,
-    postUserAddressNonUKPage
-
-  )
-
-  setup("IndividualWithoutIdUKAddress", "Individual Without ID with UK Address").withActions(
-    getBusinessRegistrationTypePage,
-    postBusinessRegistrationTypeIndividual,
-    getNINOPage,
-    postNINOPage("false"),
-    getWhatIsYourNamePage,
-    postWhatIsYourNamePage,
-    getWhatIsYourDateOfBirthPage,
-    postWhatIsYourDateOfBirthPage,
-    getWhereDoYouLivePage,
-    postWhereDoYouLiveYesPage,
-    getUserPostcodeUKPage,
-    postUserPostcodeUKPage,
-    getUserAddressUKPage,
-    postUserAddressUKPage,
-
-  )
-
-  setup("IndividualWithId", "Individual With ID Journey"). withActions(
-    getBusinessRegistrationTypePage,
-    postBusinessRegistrationTypeIndividual,
-    getNINOPage,
-    postNINOPage("true"),
-    getWhatIsYourNiPage,
-    postWhatIsYourNiPage,
-    getIndividualNamePage,
-    postIndividualNamePage,
-    getIndividualDoBPage,
-    postIndividualDoBPage,
-    getIdentityConfirmedPage,
-  )*/
   runSimulation()
 }

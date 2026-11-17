@@ -21,12 +21,12 @@ import uk.gov.hmrc.perftests.example.Requests._
 
 class Simulation extends PerformanceTestRunner {
 
-  setup("AuthLogin", "logging in via auth").withRequests (
+  setup("AuthLogin", "logging in via auth").withRequests(
     getAuthLoginPage,
     postAuthLoginPage
   )
 
-  setup("BusinessWithoutIdForOrganisation", "Business without Id Journey").withActions (
+  setup("BusinessWithoutIdForOrganisation", "Business without Id Journey").withActions(
     getBusinessRegistrationTypePage,
     postBusinessRegistrationTypePage,
     getRegisteredAddressInUkPage,
@@ -67,7 +67,7 @@ class Simulation extends PerformanceTestRunner {
     getConfirmationRegistrationPage
   )
 
-  setup("BusinessWithIdForOrganisation", "Business with Id Journey").withActions (
+  setup("BusinessWithIdForOrganisation", "Business with Id Journey").withActions(
     getBusinessRegistrationTypePage,
     postBusinessRegistrationTypePage,
     getRegisteredAddressInUkPage,
@@ -77,7 +77,7 @@ class Simulation extends PerformanceTestRunner {
     getRegisteredBusinessNameWithIdPage,
     postRegisteredBusinessNameWithIdPage,
     getYourBusinessWithIdPage,
-    postYourBusinessWithIdPage,
+    postYourBusinessWithIdPage
   )
 
   setup("SoletraderWithoutId", "Soletrader Without ID Journey").withActions(
@@ -98,10 +98,10 @@ class Simulation extends PerformanceTestRunner {
     getUserAddressNonUKPage,
     postUserAddressNonUKPage,
     getIndividualEmailAddressPage,
-    postIndividualEmailAddressPage,
+    postIndividualEmailAddressPage
   )
 
-  setup("SoletraderWithId", "Sole trader With ID Journey"). withActions(
+  setup("SoletraderWithId", "Sole trader With ID Journey").withActions(
     getBusinessRegistrationTypePage,
     postBusinessRegistrationTypeSole,
     getRegisteredAddressInUkPage,
@@ -142,7 +142,7 @@ class Simulation extends PerformanceTestRunner {
     postIndividualEmailAddressPage
   )
 
-  setup("IndividualWithId", "Individual With ID Journey"). withActions(
+  setup("IndividualWithId", "Individual With ID Journey").withActions(
     getBusinessRegistrationTypePage,
     postBusinessRegistrationTypeIndividual,
     getNINOPage,
